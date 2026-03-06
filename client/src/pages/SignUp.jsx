@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const SignUp = () => {
   return (
-    <div className='min-h-screen '>
-        <div className="flex justify-between items-center Roboto mt-32 sm:mx-20 mx-4 gap-2">
+    <div className='min-h-screen dark:bg-gray-950 dark:text-white'>
+        <div className="flex justify-between items-center Roboto pt-20 sm:pt-32 sm:mx-20 mx-4 gap-2">
             {/* add logo here */}
-            <div className=" flex items-center flex-col p-4 flex-1 text-xl sm:text-4xl  relative">
+            <div className=" sm:flex hidden items-center flex-col p-4 flex-1 text-xl sm:text-4xl  relative">
                 {/* <img src="/logo1.png" alt="logo"
                 className='w-64 ' 
                 /> */}
