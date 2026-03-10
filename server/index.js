@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 
 // files import
 import connectDb from './db/db.js';
+import errorHandler from './middlewares/error.middleware.js';
+import authRoutes from './routes/auth.routes.js'
 
 // config dotenv
 dotenv.config()
@@ -21,7 +23,10 @@ app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 8080
 
 // Routes
-// app.use('api/v1/user')
+app.use('/api/v1/auth', authRoutes);
+
+// error handler middleware
+app.use(errorHandler)
 
 app.listen(PORT, ()=>{
     console.log(`Server is connected on http://localhost:${PORT}`.bgCyan.white);
