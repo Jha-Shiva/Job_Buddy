@@ -1,11 +1,11 @@
-import User from "../models/User.model.js";
+import User from "../models/user.model.js";
 
 export const profileUpdate = async(req,res,next)=>{
     const { skills, experience, preferredRole, location } = req.body;
 
     // validation
     if(req.user.id !== req.params.userId){
-        next({statusCode: 403, message: 'You are not authorized to edit this profile'})
+        return next({statusCode: 403, message: 'You are not authorized to edit this profile'})
     }
 
     const updateData = {};
@@ -15,7 +15,7 @@ export const profileUpdate = async(req,res,next)=>{
 
     if(preferredRole !== undefined && preferredRole.trim() !=='') updateData.preferredRole = preferredRole;
     
-    if(location !== undefined && location.trim() !== '') updateData.location = location;
+    if(typeof location === "string" && location !== undefined && location.trim() !== '') updateData.location = location;
 
     try {
         const user = await User.findByIdAndUpdate(req.user.id,
@@ -26,10 +26,21 @@ export const profileUpdate = async(req,res,next)=>{
             {returnDocument: "after"} //newer version to get updated document after updated data
         )
 
-        res.status(201).json({
+        // if user get missing in db and get deleted by admin when user is logged in so check
+        if (!user) {
+            return next({
+                statusCode: 404,
+                message: "User not found"
+            });
+        }
+
+        // remove username, email, password 
+        const { password: pass, ...rest } = user._doc
+
+        res.status(200).json({
             success: true,
             message: 'profile updated successfully',
-            user
+            user: rest
         })
     } catch (error) {
         next(error)
