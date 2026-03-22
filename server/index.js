@@ -1,12 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser';
 
 // files import
 import connectDb from './db/db.js';
 import errorHandler from './middlewares/error.middleware.js';
-import authRoutes from './routes/auth.routes.js'
-import userRoutes from './routes/user.routes.js'
-import cookieParser from 'cookie-parser';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import jobRoutes from './routes/job.routes.js';
 
 // config dotenv
 dotenv.config()
@@ -28,6 +29,7 @@ const PORT = process.env.PORT || 8080
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/jobs', jobRoutes);
 
 // error handler middleware
 app.use(errorHandler)
