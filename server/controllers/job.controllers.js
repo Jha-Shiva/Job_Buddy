@@ -44,7 +44,7 @@ export const getAllJobs = async (req, res, next)=>{
     if(!req.user){
         return next({statusCode: 401, message: "You are not authorized"})
     };
-    console.log(keyword);
+
     try {
         
         let query = {};

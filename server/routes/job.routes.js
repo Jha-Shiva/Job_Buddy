@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post('/create',verifyToken, createJob);
 router.get('/getAllJobs',verifyToken, getAllJobs);
-router.get('/match', verifyToken, skillMatching)
+router.get('/match', verifyToken, skillMatching);
 
 export default router;

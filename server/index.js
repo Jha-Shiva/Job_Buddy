@@ -8,6 +8,7 @@ import errorHandler from './middlewares/error.middleware.js';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import jobRoutes from './routes/job.routes.js';
+import mockTestRoutes from './routes/mockTest.routes.js'
 
 // config dotenv
 dotenv.config()
@@ -30,6 +31,7 @@ const PORT = process.env.PORT || 8080
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/jobs', jobRoutes);
+app.use('/api/v1/mock-test', mockTestRoutes);
 
 // error handler middleware
 app.use(errorHandler)
