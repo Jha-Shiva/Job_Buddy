@@ -56,7 +56,7 @@ export const getMockTestbyId = async (req, res, next) => {
     };
 
     if(!mongoose.Types.ObjectId.isValid(mockTestId)){
-        return next({statusCode: 403, message: "Invalid mocktest Id"});
+        return next({statusCode: 400, message: "Invalid mocktest Id"});
     };
 
     try {
